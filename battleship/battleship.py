@@ -116,7 +116,7 @@ def gameplay(total_hits):
         gameplay(total_hits)
     else:
         for ship_coords in p1_shipscoord:
-            if total_hits == 17:
+            if total_hits == 16:
                 print("You win!")
                 return 0
             if guess in ship_coords:
@@ -134,8 +134,6 @@ def gameplay(total_hits):
             print("")
             sketch(p1_shipscoord)
             gameplay(total_hits)
-    
-
 
 for i in range(0, 5):
     p1_board()
