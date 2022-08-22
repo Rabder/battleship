@@ -33,9 +33,14 @@ def chooseShip_ai():
 #         print(x, end=" ")
 
 def random_coord(ship_len):
+    ran_choice = random.randint(0,1)
     start = str(random.choice(y_axis) + random.choice(x_axis))
-    if (10 - int(start[1])) >= int(ship_len):
+    if (ran_choice == 0) and (10 - int(start[1])) >= int(ship_len):
         end = start[0] + str(int(start[1])+(ship_len-1))
+        return [start, end]
+    elif (ran_choice == 1) and (ord('i')-ord(start[0])) >= int(ship_len):
+        y_end = (ord(start[0]) + int(ship_len)) - 1
+        end = chr(y_end) + start[1]
         return [start, end]
     else:
         return random_coord(ship_len)
@@ -43,6 +48,5 @@ def random_coord(ship_len):
 
 
 print(random_coord(5))
-
 
 
