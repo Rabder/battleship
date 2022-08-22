@@ -1,12 +1,5 @@
-from tabnanny import check
-
-
 x_axis = ['1','2','3','4','5','6','7','8','9']
 y_axis = ['a','b','c','d','e','f','g','h','i']
-hit = 'X'
-
-
-
 player1_ships = {'carrier': [True, 5], 'battleship': [True, 4], 'cruiser': [True, 3], 'submarine': [True, 3], 'destroyer': [True, 2]}
 player2_ships = {'carrier': True, 'battleship': True, 'cruiser': True, 'submarine': True, 'destroyer': True}
 p1_shipscoord = []
@@ -33,7 +26,7 @@ def chooseShip():
     else:
         print("Invalid selection")
         print("")
-        chooseShip()
+        return chooseShip()
 
 
 def sketch(p1_shipscoord):
@@ -115,34 +108,38 @@ def p1_board():
     print(p1_shipscoord)
     
 
-def gameplay():
+def gameplay(total_hits):
     check_hit = False
     print("")
     guess = input("Guess a coordinate: ")
     if len(guess) != 2 or not ((guess[0].lower() in y_axis) and (guess[1] in x_axis)):
-        gameplay()
+        gameplay(total_hits)
     else:
         for ship_coords in p1_shipscoord:
+            if total_hits == 17:
+                print("You win!")
+                return 0
             if guess in ship_coords:
                 check_hit = True
                 sketch(p1_shipscoord)
                 print("")
                 print("HIT")
                 print("")
+                total_hits += 1
                 ship_coords.remove(guess)
-                gameplay()
+                gameplay(total_hits)
         if check_hit == False:     
             print("")
             print("MISS")
             print("")
             sketch(p1_shipscoord)
-            gameplay()
+            gameplay(total_hits)
     
 
 
 for i in range(0, 5):
     p1_board()
     print("")
-gameplay()
+gameplay(0)
 
 
