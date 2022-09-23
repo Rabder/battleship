@@ -63,7 +63,7 @@ def p1_board():
                 if (i >= coord1[0]) and (i <= coord2[0]):
                     ship_coord.append(i + coord1[1])
         
-        if len(ship_coord) != ship_len[1]:
+        if len(ship_coord) != ship_len[1]: #Just a comment
             print("Invalid selection")
             ship_len[0] = True
             ship_coord = []
